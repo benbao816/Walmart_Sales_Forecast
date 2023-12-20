@@ -1,0 +1,4 @@
+defaults:
+  - path_config: path_config
+  - model_params: lstm
+  - feature_params: feature_params

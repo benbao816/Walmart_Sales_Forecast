@@ -1,0 +1,11 @@
+# 忽略文件
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# 忽略文件夹
+venv/
+node_modules/
+__MACOSX/
+.DS_Store

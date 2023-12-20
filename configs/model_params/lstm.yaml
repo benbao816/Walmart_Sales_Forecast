@@ -1,0 +1,15 @@
+time_step: 10
+lstm_units: 50
+dense_unit: 1
+model_type: "LSTM"
+optimizer: 'adam'
+loss: 'mean_squared_error'
+train_rate: 0.8
+dropout: 0.1
+recurrent_dropout: 0.1
+layer_norm_axis: 1
+beta_initializer: 'ones'
+gamma_initializer: 'zeros'
+learning_rate: 0.0015
+epochs: 2
+batch_size: 1

@@ -1,0 +1,11 @@
+[2023-12-19 20:26:11,134][train_pipeline][INFO] - Data file is loaded from data/raw/train.csv
+[2023-12-19 20:26:11,134][train_pipeline][INFO] - Features are processing...
+[2023-12-19 20:26:11,136][train_pipeline][INFO] - Training data is preparing...
+[2023-12-19 20:26:11,152][train_pipeline][INFO] - Model training...
+[2023-12-19 20:26:11,255][absl][WARNING] - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.
+[2023-12-19 20:26:11,258][absl][WARNING] - There is a known slowdown when using v2.11+ Keras optimizers on M1/M2 Macs. Falling back to the legacy Keras optimizer, i.e., `tf.keras.optimizers.legacy.Adam`.
+[2023-12-19 20:26:48,248][train_pipeline][INFO] - Model is ready
+[2023-12-19 20:26:48,717][train_pipeline][INFO] - Metrics on test data is ready
+[2023-12-19 20:26:48,718][train_pipeline][INFO] - {'model_eval': 0.008429838344454765, 'mae': 0.07925945611877269, 'mse': 0.008429837819032544, 'rmse': 0.09181414825086896, 'mae_inverse': 286023.6150972762, 'mse_inverse': 109779393423.77089, 'rmse_inverse': 331329.73519406747}
+[2023-12-19 20:26:48,718][train_pipeline][INFO] - Metrics are stored
+[2023-12-19 20:26:48,790][train_pipeline][INFO] - Model is stored as src/models/saved_models/model_LSTM_2023-12-19_2026.pkl

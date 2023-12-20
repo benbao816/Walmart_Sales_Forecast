@@ -1,0 +1,12 @@
+# @package _group_
+categorical_features:
+  - "Store"
+numerical_features:
+  - "Weekly_Sales"
+  - "Holiday_Flag"
+  - "Temperature"
+  - "Fuel_Price"
+  - "CPI"
+  - "Unemployment"
+target_col: "Weekly_Sales"
+
