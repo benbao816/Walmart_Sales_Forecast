@@ -1,0 +1,13 @@
+[2023-12-20 17:17:05,739][train_pipeline][INFO] - Data file is loaded from data/raw/train.csv
+[2023-12-20 17:17:05,739][train_pipeline][INFO] - Features are processing...
+[2023-12-20 17:17:05,742][train_pipeline][INFO] - Training data is preparing...
+[2023-12-20 17:17:05,760][train_pipeline][INFO] - Model training...
+[2023-12-20 17:17:05,873][absl][WARNING] - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 17:17:05,875][absl][WARNING] - There is a known slowdown when using v2.11+ Keras optimizers on M1/M2 Macs. Falling back to the legacy Keras optimizer, i.e., `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 17:17:44,269][train_pipeline][INFO] - Model is ready
+[2023-12-20 17:17:44,756][train_pipeline][INFO] - Metrics on test data is ready
+[2023-12-20 17:17:44,756][train_pipeline][INFO] - {'model_eval': 0.012659762054681778, 'mae': 0.0999374327657324, 'mse': 0.012659760897626127, 'rmse': 0.11251560290744625, 'mae_inverse': 360644.2337198444, 'mse_inverse': 164864485201.4745, 'rmse_inverse': 406035.0787819625}
+[2023-12-20 17:17:44,756][train_pipeline][INFO] - Metrics are stored
+[2023-12-20 17:17:44,766][train_pipeline][INFO] - Model is stored as src/models/saved_models/model_LSTM_2023-12-20_1717.h5
+[2023-12-20 17:17:44,766][train_pipeline][INFO] - All of Paratmeters are stored as 
+TrainingPipelineParams(path_config=PathParams(input_data_path='data/raw/train.csv', output_model_path='src/models/saved_models/model_', metric_path='src/models/metrics/'), model_params=LSTMParams(time_step=10, lstm_units=50, dense_unit=1, model_type='LSTM', optimizer='adam', loss='mean_squared_error', train_rate=0.8, dropout=0.1, recurrent_dropout=0.1, layer_norm_axis=1, beta_initializer='ones', gamma_initializer='zeros', learning_rate=0.0015, epochs=2, batch_size=1), feature_params=FeatureParams(categorical_features=['Store'], numerical_features=['Weekly_Sales', 'Holiday_Flag', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment'], target_col='Weekly_Sales'))

@@ -11,5 +11,5 @@ layer_norm_axis: 1
 beta_initializer: 'ones'
 gamma_initializer: 'zeros'
 learning_rate: 0.0015
-epochs: 2
+epochs: 8
 batch_size: 1

@@ -20,7 +20,7 @@ def synthetic_data_path() -> str:
 
 @pytest.fixture(scope="session")
 def load_model_path() -> str:
-    return "tests/model_"
+    return "tests/test_model_"
 
 
 @pytest.fixture(scope="session")
