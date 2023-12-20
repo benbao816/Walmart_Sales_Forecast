@@ -1,0 +1,13 @@
+[2023-12-20 23:04:56,137][train_pipeline][INFO] - Data file is loaded from data/raw/train.csv
+[2023-12-20 23:04:56,137][train_pipeline][INFO] - Features are processing...
+[2023-12-20 23:04:56,144][train_pipeline][INFO] - Training data is preparing...
+[2023-12-20 23:04:56,145][train_pipeline][INFO] - Model training...
+[2023-12-20 23:04:56,250][absl][WARNING] - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 23:04:56,252][absl][WARNING] - There is a known slowdown when using v2.11+ Keras optimizers on M1/M2 Macs. Falling back to the legacy Keras optimizer, i.e., `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 23:04:58,476][train_pipeline][INFO] - Model is ready
+[2023-12-20 23:04:58,816][train_pipeline][INFO] - Metrics on test data is ready
+[2023-12-20 23:04:58,816][train_pipeline][INFO] - {'model_eval': 0.0019721013959497213, 'mae': 0.03640695870247486, 'mse': 0.0019721016825923567, 'rmse': 0.0444083514960008}
+[2023-12-20 23:04:58,817][train_pipeline][INFO] - Metrics are stored
+[2023-12-20 23:04:58,827][train_pipeline][INFO] - Model is stored as src/models/saved_models/model_LSTM_2023-12-20_2304.h5
+[2023-12-20 23:04:58,827][train_pipeline][INFO] - All of Paratmeters are stored as 
+TrainingPipelineParams(path_config=PathParams(input_data_path='data/raw/train.csv', output_model_path='src/models/saved_models/model_', metric_path='src/models/metrics/'), model_params=LSTMParams(time_step=3, lstm_units=50, dense_unit=1, model_type='LSTM', optimizer='adam', loss='mean_squared_error', train_rate=0.8, dropout=0.1, recurrent_dropout=0.1, layer_norm_axis=1, beta_initializer='ones', gamma_initializer='zeros', learning_rate=0.05, epochs=8, batch_size=1), feature_params=FeatureParams(categorical_features=['Holiday_Flag'], numerical_features=['Weekly_Sales', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment'], target_col='Weekly_Sales', datetime_col='Date'))

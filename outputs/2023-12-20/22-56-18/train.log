@@ -1,0 +1,13 @@
+[2023-12-20 22:56:19,006][train_pipeline][INFO] - Data file is loaded from data/raw/train.csv
+[2023-12-20 22:56:19,006][train_pipeline][INFO] - Features are processing...
+[2023-12-20 22:56:19,013][train_pipeline][INFO] - Training data is preparing...
+[2023-12-20 22:56:19,014][train_pipeline][INFO] - Model training...
+[2023-12-20 22:56:19,112][absl][WARNING] - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 22:56:19,114][absl][WARNING] - There is a known slowdown when using v2.11+ Keras optimizers on M1/M2 Macs. Falling back to the legacy Keras optimizer, i.e., `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 22:56:21,007][train_pipeline][INFO] - Model is ready
+[2023-12-20 22:56:21,347][train_pipeline][INFO] - Metrics on test data is ready
+[2023-12-20 22:56:21,348][train_pipeline][INFO] - {'model_eval': 0.0019923776853829622, 'mae': 0.033660241932960445, 'mse': 0.00199237625948435, 'rmse': 0.0446360421574802}
+[2023-12-20 22:56:21,348][train_pipeline][INFO] - Metrics are stored
+[2023-12-20 22:56:21,358][train_pipeline][INFO] - Model is stored as src/models/saved_models/model_LSTM_2023-12-20_2256.h5
+[2023-12-20 22:56:21,358][train_pipeline][INFO] - All of Paratmeters are stored as 
+TrainingPipelineParams(path_config=PathParams(input_data_path='data/raw/train.csv', output_model_path='src/models/saved_models/model_', metric_path='src/models/metrics/'), model_params=LSTMParams(time_step=3, lstm_units=50, dense_unit=1, model_type='LSTM', optimizer='adam', loss='mean_squared_error', train_rate=0.8, dropout=0.1, recurrent_dropout=0.1, layer_norm_axis=1, beta_initializer='ones', gamma_initializer='zeros', learning_rate=0.0015, epochs=6, batch_size=1), feature_params=FeatureParams(categorical_features=['Holiday_Flag'], numerical_features=['Weekly_Sales', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment'], target_col='Weekly_Sales', datetime_col='Date'))

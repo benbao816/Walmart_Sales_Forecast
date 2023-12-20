@@ -11,6 +11,7 @@ from typing import NoReturn, List, Tuple
 import pytest
 import pandas as pd
 from faker import Faker
+from datetime import datetime
 
 ROW_NUMS = 1000
 
@@ -43,6 +44,24 @@ def synthetic_data() -> pd.DataFrame:
     fake = Faker()
     Faker.seed(21)
     df = {
+        
+        "Store": [fake.pyint(min_value=1, max_value=10) for _ in range(ROW_NUMS)],
+        "Weekly_Sales": [fake.pyfloat(min_value=1000000, max_value=5000000) for _ in range(ROW_NUMS)],
+        "Holiday_Flag": [fake.pyint(min_value=0, max_value=1) for _ in range(ROW_NUMS)],
+        "Temperature": [fake.pyfloat(min_value=30, max_value=40) for _ in range(ROW_NUMS)],
+        "Fuel_Price": [fake.pyfloat(min_value=2.1, max_value=2.3) for _ in range(ROW_NUMS)],
+        "CPI": [fake.pyfloat(min_value=200, max_value=205) for _ in range(ROW_NUMS)],
+        "Unemployment": [fake.pyfloat(min_value=8.1, max_value=8.3) for _ in range(ROW_NUMS)],
+    }
+
+    return pd.DataFrame(data=df)
+
+@pytest.fixture(scope="session")
+def synthetic_date_data() -> pd.DataFrame:
+    fake = Faker()
+    Faker.seed(21)
+    df = {
+        "Date": [fake.date_between_dates(date_start=datetime(2015,1,1), date_end=datetime(2019,12,31)) for _ in range(ROW_NUMS)],
         "Store": [fake.pyint(min_value=1, max_value=10) for _ in range(ROW_NUMS)],
         "Weekly_Sales": [fake.pyfloat(min_value=1000000, max_value=5000000) for _ in range(ROW_NUMS)],
         "Holiday_Flag": [fake.pyint(min_value=0, max_value=1) for _ in range(ROW_NUMS)],
@@ -58,7 +77,6 @@ def synthetic_data() -> pd.DataFrame:
 def numerical_features() -> List[str]:
     return [
         "Weekly_Sales",
-        "Holiday_Flag",
         "Temperature",
         "Fuel_Price",
         "CPI",
@@ -69,7 +87,7 @@ def numerical_features() -> List[str]:
 @pytest.fixture(scope="session")
 def categorical_features() -> List[str]:
     return [
-        "Store"
+        "Holiday_Flag"
     ]
 
 
@@ -77,21 +95,27 @@ def categorical_features() -> List[str]:
 def target_col() -> str:
     return "Weekly_Sales"
 
+@pytest.fixture(scope="session")
+def datetime_col() -> str:
+    return "Date"
+
 @pytest.fixture(scope="package")
 def feature_params(categorical_features: List[str],
                    numerical_features: List[str],
-                   target_col: str) -> FeatureParams:
+                   target_col: str,
+                   datetime_col:str) -> FeatureParams:
     features = FeatureParams(
         categorical_features=categorical_features,
         numerical_features=numerical_features,
         target_col=target_col,
+        datetime_col=datetime_col
     )
     return features
 
 @pytest.fixture(scope="package")
 def lstm_params() -> LSTMParams:
     model = LSTMParams(
-        time_step=10,
+        time_step=3,
         lstm_units=50,
         dense_unit=1,
         model_type="LSTM",

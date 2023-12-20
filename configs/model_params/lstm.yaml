@@ -1,4 +1,4 @@
-time_step: 10
+time_step: 5
 lstm_units: 50
 dense_unit: 1
 model_type: "LSTM"
@@ -10,6 +10,6 @@ recurrent_dropout: 0.1
 layer_norm_axis: 1
 beta_initializer: 'ones'
 gamma_initializer: 'zeros'
-learning_rate: 0.0015
-epochs: 8
+learning_rate: 0.03
+epochs: 20
 batch_size: 1

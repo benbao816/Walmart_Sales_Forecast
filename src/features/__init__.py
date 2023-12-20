@@ -3,7 +3,8 @@ from .feature_process import (
     create_dataset,
     parse_cate_cols,
     scale_data,
-    inverse_y_array
+    inverse_y_array,
+    build_feature
     
 )
 
@@ -12,5 +13,6 @@ __all__ = [
     "create_dataset",
     "parse_cate_cols",
     "scale_data",
-    "inverse_y_array"
+    "inverse_y_array",
+    "build_feature"
 ]

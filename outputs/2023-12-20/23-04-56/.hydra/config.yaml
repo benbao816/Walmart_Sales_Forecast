@@ -1,0 +1,31 @@
+path_config:
+  input_data_path: data/raw/train.csv
+  output_model_path: src/models/saved_models/model_
+  metric_path: src/models/metrics/
+model_params:
+  time_step: 3
+  lstm_units: 50
+  dense_unit: 1
+  model_type: LSTM
+  optimizer: adam
+  loss: mean_squared_error
+  train_rate: 0.8
+  dropout: 0.1
+  recurrent_dropout: 0.1
+  layer_norm_axis: 1
+  beta_initializer: ones
+  gamma_initializer: zeros
+  learning_rate: 0.05
+  epochs: 8
+  batch_size: 1
+feature_params:
+  categorical_features:
+  - Holiday_Flag
+  numerical_features:
+  - Weekly_Sales
+  - Temperature
+  - Fuel_Price
+  - CPI
+  - Unemployment
+  target_col: Weekly_Sales
+  datetime_col: Date

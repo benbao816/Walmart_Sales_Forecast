@@ -31,7 +31,47 @@ def parse_cate_cols(df:pd.DataFrame, params:FeatureParams):
 
 def scale_data(df:pd.DataFrame, params:FeatureParams):
     scaler = MinMaxScaler(feature_range=(0, 1))
-    sales_with_features = parse_cate_cols(df, params)
-    sales_data_normalized = scaler.fit_transform(sales_with_features)
+    # sales_with_features = parse_cate_cols(df, params)
+    sales_data_normalized = scaler.fit_transform(df)
     return sales_data_normalized, scaler
+
+def build_feature(df:pd.DataFrame, params:FeatureParams) -> pd.DataFrame:
+    df_copy = df[[params.datetime_col,params.target_col]].copy()
+    df_copy[params.datetime_col] = pd.to_datetime(df_copy[params.datetime_col], dayfirst=True)
+    time_sales = df_copy.groupby(params.datetime_col).sum().reset_index()
+
+    exclude_col = [params.datetime_col, params.target_col] + [params.categorical_features]
+    feature_to_process = [i for i in df.columns.tolist() if i not in exclude_col] 
+    feature_date_col = [params.datetime_col] + feature_to_process
+    func_list = ['mean', 'min', 'max']
+    col_rename_dict = dict()
+    for func in func_list:
+        new_col = [i + '_' + func for i in feature_to_process]
+        col_rename = dict(zip(feature_to_process,new_col))
+        col_rename_dict[func] = col_rename
+
+    data_list = [time_sales.drop(params.datetime_col, axis = 1),
+                df[feature_date_col].groupby(params.datetime_col).mean()
+                                    .rename(columns=col_rename_dict['mean'])
+                                    .reset_index()
+                                    .drop(params.datetime_col, axis = 1),
+                df[feature_date_col].groupby(params.datetime_col).min()
+                                    .rename(columns=col_rename_dict['min'])
+                                    .reset_index()
+                                    .drop(params.datetime_col, axis = 1),
+                df[feature_date_col].groupby(params.datetime_col).max()
+                                    .rename(columns=col_rename_dict['max'])
+                                    .reset_index()
+                                    .drop(params.datetime_col, axis = 1),
+                df[[params.datetime_col] + params.categorical_features].drop_duplicates()
+                                               .drop(params.datetime_col, axis = 1)
+                ]
+    feature = pd.concat(data_list, axis = 1)
+    return feature
+
+
+
+    
+    
+    
 

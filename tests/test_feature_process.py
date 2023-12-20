@@ -1,14 +1,12 @@
 
 from src.entities import FeatureParams, LSTMParams
-from src.features import create_dataset, parse_cate_cols, scale_data
+from src.features import create_dataset, parse_cate_cols, scale_data, build_feature
 import pandas as pd
 from typing import NoReturn, List, Tuple
 
 
 def test_parse_cate_cols(synthetic_data: pd.DataFrame,
                          feature_params:FeatureParams):
-
-    
     test_sales_with_features = parse_cate_cols(synthetic_data, feature_params)
     assert len(synthetic_data) == len(test_sales_with_features)
 
@@ -26,3 +24,9 @@ def test_create_dataset(synthetic_data: pd.DataFrame,
     assert shape[1] == time_step
     assert len(X) == len(y)
     assert len(X) + time_step == len(synthetic_data)
+
+def test_build_feature(synthetic_date_data: pd.DataFrame,
+                       feature_params: FeatureParams):
+    feature = build_feature(synthetic_date_data, feature_params)
+    isinstance(feature, pd.DataFrame)
+

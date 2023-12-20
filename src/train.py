@@ -3,7 +3,7 @@ sys.path.append('/Users/benjamin/Github/pg_task/Walmart_Sales_Forecast')
 
 from src.entities.train_model_params import TrainingPipelineParams, TrainingPipelineParamsSchema
 from src.models.build_model import build_lstm
-from src.features import create_dataset, scale_data, inverse_y_array
+from src.features import create_dataset, scale_data, build_feature
 from src.utils import save_pkl_file, save_metrics_to_json
 
 
@@ -26,7 +26,9 @@ def train_process(training_pipeline_params: TrainingPipelineParams):
     train_logger.info(f'Data file is loaded from {training_pipeline_params.path_config.input_data_path}')
 
     train_logger.info('Features are processing...')
-    sales_data_normalized, scaler = scale_data(df, training_pipeline_params.feature_params)
+    features = build_feature(df, training_pipeline_params.feature_params)
+    print(features.columns)
+    sales_data_normalized, scaler = scale_data(features, training_pipeline_params.feature_params)
 
     train_logger.info('Training data is preparing...')
     time_steps = training_pipeline_params.model_params.time_step
@@ -40,17 +42,14 @@ def train_process(training_pipeline_params: TrainingPipelineParams):
 
     y_predict = model.predict(X_test)
 
-    y_test_reform = inverse_y_array(y_test, shape[2], scaler)
-    y_predict_reform = inverse_y_array(y_predict, shape[2], scaler)
+    # y_test_reform = inverse_y_array(y_test, shape[2], scaler)
+    # y_predict_reform = inverse_y_array(y_predict, shape[2], scaler)
 
     metric_dict = {
        "model_eval": model.evaluate(X_test,y_test),
        "mae": mean_absolute_error(y_test, y_predict),
        "mse": mean_squared_error(y_test, y_predict),
        "rmse": np.sqrt(mean_squared_error(y_test, y_predict)),
-       "mae_inverse": mean_absolute_error(y_test_reform, y_predict_reform),
-       "mse_inverse": mean_squared_error(y_test_reform, y_predict_reform),
-       "rmse_inverse": np.sqrt(mean_squared_error(y_test_reform, y_predict_reform))
     }
 
     metric_file = f'metrics_{time_stamp}.json'

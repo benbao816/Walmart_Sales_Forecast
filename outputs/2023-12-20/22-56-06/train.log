@@ -1,0 +1,13 @@
+[2023-12-20 22:56:07,015][train_pipeline][INFO] - Data file is loaded from data/raw/train.csv
+[2023-12-20 22:56:07,015][train_pipeline][INFO] - Features are processing...
+[2023-12-20 22:56:07,022][train_pipeline][INFO] - Training data is preparing...
+[2023-12-20 22:56:07,022][train_pipeline][INFO] - Model training...
+[2023-12-20 22:56:07,120][absl][WARNING] - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 22:56:07,122][absl][WARNING] - There is a known slowdown when using v2.11+ Keras optimizers on M1/M2 Macs. Falling back to the legacy Keras optimizer, i.e., `tf.keras.optimizers.legacy.Adam`.
+[2023-12-20 22:56:08,342][train_pipeline][INFO] - Model is ready
+[2023-12-20 22:56:08,688][train_pipeline][INFO] - Metrics on test data is ready
+[2023-12-20 22:56:08,689][train_pipeline][INFO] - {'model_eval': 0.0028461229521781206, 'mae': 0.04466315130081361, 'mse': 0.002846122527050159, 'rmse': 0.05334906303816553}
+[2023-12-20 22:56:08,689][train_pipeline][INFO] - Metrics are stored
+[2023-12-20 22:56:08,698][train_pipeline][INFO] - Model is stored as src/models/saved_models/model_LSTM_2023-12-20_2256.h5
+[2023-12-20 22:56:08,699][train_pipeline][INFO] - All of Paratmeters are stored as 
+TrainingPipelineParams(path_config=PathParams(input_data_path='data/raw/train.csv', output_model_path='src/models/saved_models/model_', metric_path='src/models/metrics/'), model_params=LSTMParams(time_step=3, lstm_units=50, dense_unit=1, model_type='LSTM', optimizer='adam', loss='mean_squared_error', train_rate=0.8, dropout=0.1, recurrent_dropout=0.1, layer_norm_axis=1, beta_initializer='ones', gamma_initializer='zeros', learning_rate=0.0015, epochs=2, batch_size=1), feature_params=FeatureParams(categorical_features=['Holiday_Flag'], numerical_features=['Weekly_Sales', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment'], target_col='Weekly_Sales', datetime_col='Date'))
